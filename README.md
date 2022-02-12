@@ -97,7 +97,7 @@ def query_astra_db(request):
           'secure_connect_bundle': '/tmp/secure-connect-for-my-database.zip'
     }
     auth_provider = PlainTextAuthProvider(ASTRA_DB_CLIENT_ID, ASTRA_DB_CLIENT_SECRET)
-    cluster = Cluster(cloud=cloud_config, auth_provider=auth_provider)
+    cluster = Cluster(cloud=cloud_config, auth_provider=auth_provider, protocol_version=4)
     session = cluster.connect()
 
     row = session.execute("SELECT cql_version FROM system.local WHERE key = 'local';").one()
